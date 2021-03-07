@@ -180,5 +180,86 @@ namespace Lab01.Entities
         {
             return $"Id: {Id}, Name: {Name}\nDescription: {Description}";
         }
+
+
+
+
+        //added by Iryna
+        public decimal getCurrentBalance()
+        {
+            decimal balance = InitBalance;
+
+            foreach (Transaction tr in Transactions) {
+                int rate = (int)tr.Currency;
+                decimal sum = tr.Sum;
+                if(tr.ReceiverId== Id)
+                {
+                    balance += rate * sum;
+                }
+                else
+                {
+                    balance -= rate * sum;
+                }
+            }
+
+            return balance;
+        }
+
+
+        public decimal getLastMonthIncome()
+        {
+            decimal income = 0;
+
+            DateTime today = DateTime.Now;
+
+            string currMonth = today.ToString("M");
+
+            foreach (Transaction tr in Transactions)
+            {
+                int rate = (int)tr.Currency;
+                decimal sum = tr.Sum;
+                string month = tr.Date.ToString("M");
+
+                if (tr.ReceiverId == Id && month.Equals(currMonth))
+                {
+                    income += rate * sum;
+                }
+                
+            }
+
+            return income;
+        }
+
+
+        public decimal GetLastMonthExpenses()
+        {
+
+            decimal expenses = 0;
+
+            DateTime today = DateTime.Now;
+
+            string currMonth = today.ToString("M");
+
+            foreach (Transaction tr in Transactions)
+            {
+                int rate = (int)tr.Currency;
+                decimal sum = tr.Sum;
+                string month = tr.Date.ToString("M");
+
+                if (tr.SenderId == Id && month.Equals(currMonth))
+                {
+                    expenses += rate * sum;
+                }
+
+            }
+
+            return expenses;
+
+        }
+
+
+
+         
+        
     }
 }

@@ -55,6 +55,7 @@ namespace Lab01.Entities
             }
         }
 
+        
         public List<Category> Categories
         {
             get
@@ -70,6 +71,7 @@ namespace Lab01.Entities
                 return _wallets;
             }
         }
+        
 
         public Person(string name, string surname, string email)
         {
@@ -116,6 +118,12 @@ namespace Lab01.Entities
                 result = false;
 
             return result;
+        }
+
+
+        public void addSharedWallet(Wallet wallet)
+        {
+            _wallets.Add(wallet);
         }
     }
 }
