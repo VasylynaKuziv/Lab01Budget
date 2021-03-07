@@ -102,8 +102,7 @@ namespace Lab01.Entities
         public void sendTransaction(decimal sum, Currency currency, int categoryId, int receiverId, DateTime date, string description = "")
         {
             var category = hasCategory(categoryId);
-            //check if sum>balance
-            if (category !=null)
+            if (category !=null && getCurrentBalance() >= (sum * (int) currency ))
             {
                 _transactions.Add(new Transaction(sum, currency, category,date, Id, receiverId,description));
             }
@@ -190,7 +189,7 @@ namespace Lab01.Entities
         //added by Iryna
         public decimal getCurrentBalance()
         {
-            decimal balance = InitBalance;
+            decimal balance = InitBalance * (int)MainCurrency; ;
 
             foreach (Transaction tr in Transactions) {
                 int rate = (int)tr.Currency;
