@@ -27,11 +27,29 @@ namespace Lab01.Tests
         }
 
         [Fact]
-        public void AddTransaction()
+        public void sendTransaction()
         {
-            var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { new Category("food", "red", "icon.png") });
-            wallet.addTransaction(new Transaction(200,Currency.euro,))
-            Assert.False(wallet.Validate());
+            var cat = new Category("food", "red", "icon.png");
+            var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
+            wallet.sendTransaction(100, Currency.dollar, cat.Id, 2, DateTime.Today);
+            Assert.Equal(1, wallet.Transactions.Count);
+        }
+        [Fact]
+        public void receiveTransaction()
+        {
+            var cat = new Category("food", "red", "icon.png");
+            var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
+            wallet.receiveTransaction(100, Currency.dollar, cat.Id, 2, DateTime.Today);
+            Assert.Equal(1, wallet.Transactions.Count);
+        }
+        [Fact]
+        public void removeTransaction()
+        {
+            var cat = new Category("food", "red", "icon.png");
+            var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
+            wallet.sendTransaction(100, Currency.dollar, cat.Id, 2, DateTime.Today);
+            wallet.deleteTransaction(2);
+            Assert.Equal(0, wallet.Transactions.Count);
         }
 
     }

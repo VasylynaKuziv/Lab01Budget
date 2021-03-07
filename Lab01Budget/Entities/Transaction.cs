@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public enum Currency
 {
-    dollar,
-    euro,
-    uan
+    dollar = 28,
+    euro = 33,
+    uan = 1
 }
 namespace Lab01.Entities
 {
@@ -14,7 +14,7 @@ namespace Lab01.Entities
         private static int InstanceCount = 0;
 
         private int _id;
-        private double _sum;
+        private decimal _sum;
         private Currency _currency;
         private Category _category;
         private string? _description;
@@ -28,7 +28,7 @@ namespace Lab01.Entities
             get { return _id; }
             private set { _id = value; }
         }
-        public double Sum
+        public decimal Sum
         {
             get { return _sum; }
             set { _sum = value; }
@@ -65,7 +65,7 @@ namespace Lab01.Entities
             set { _receiverId = value; }
         }
 
-        public Transaction(double sum, Currency currency, Category category, DateTime date, int senderId, int receiverId, string description = "")
+        public Transaction(decimal sum, Currency currency, Category category, DateTime date, int senderId, int receiverId, string description = "")
         {
             _id = InstanceCount;
             _sum = sum;
@@ -73,18 +73,6 @@ namespace Lab01.Entities
             _category = category;
             _description = description;
             _senderId = senderId;
-            _receiverId = receiverId;
-            _date = date;
-
-            InstanceCount += 1;
-        }
-        public Transaction(double sum, Currency currency, Category category, DateTime date, int receiverId, string description = "")
-        {
-            _id = InstanceCount;
-            _sum = sum;
-            _currency = currency;
-            _category = category;
-            _description = description;
             _receiverId = receiverId;
             _date = date;
 

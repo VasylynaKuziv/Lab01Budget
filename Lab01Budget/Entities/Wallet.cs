@@ -12,7 +12,7 @@ namespace Lab01.Entities
         private string _name;
         private string? _description;
         private Currency _mainCurrency;
-        private double _initBalance;
+        private decimal _initBalance;
         private int _ownerId;
         private HashSet<int> _otherUsers;
         private List<Transaction> _transactions;
@@ -39,7 +39,7 @@ namespace Lab01.Entities
             get { return _mainCurrency; }
             set { _mainCurrency = value; }
         }
-        public double InitBalance
+        public decimal InitBalance
         {
             get { return _initBalance; }
             set { _initBalance = value; }
@@ -61,7 +61,7 @@ namespace Lab01.Entities
         {
             get { return _categories; }
         }
-        public Wallet(string name, Currency mainCurrency, double initBalance, int ownerId, List<Category> categories, string description = "")
+        public Wallet(string name, Currency mainCurrency, decimal initBalance, int ownerId, List<Category> categories, string description = "")
         {
             _id = InstanceCount;
             _name = name;
@@ -92,29 +92,49 @@ namespace Lab01.Entities
 
             return result;
         }
-
-        public void addTransaction(Transaction newTransaction)
+        private Category hasCategory(int catId) 
         {
-            newTransaction.SenderId = Id;
-            //if (newTransaction.Category)
-            _transactions.Add(newTransaction);
-            
+            foreach (var cat in _categories)
+                if (catId == cat.Id)
+                    return cat;
+            return null;
         }
-        public void deleteTransaction(Transaction newTransaction)
+        public void sendTransaction(decimal sum, Currency currency, int categoryId, int receiverId, DateTime date, string description = "")
         {
-            _transactions.Remove(newTransaction);
+            var category = hasCategory(categoryId);
+            //check if sum>balance
+            if (category !=null)
+            {
+                _transactions.Add(new Transaction(sum, currency, category,date, Id, receiverId,description));
+            }
+        }
+        public void receiveTransaction(decimal sum, Currency currency, int categoryId, int senderId, DateTime date, string description = "")
+        {
+            var category = hasCategory(categoryId);
+            if (category != null)
+            {
+                _transactions.Add(new Transaction(sum, currency, category, date, senderId, Id, description));
+            }
+        }
+        public void deleteTransaction(int trId)
+        {
+            foreach (var tr in _transactions.ToArray())
+                if (trId == tr.Id)
+                    _transactions.Remove(tr);
         }
         public void addCategory(Category category)
         {
             _categories.Add(category);
         }
-        public void removeCategory(Category category)
+        public void removeCategory(int catId)
         {
-            _categories.Remove(category);
+            foreach (var cat in _categories.ToArray())
+                if (catId == cat.Id)
+                    _categories.Remove(cat);
         }
         public void shareWallet(int newUser)
         {
-            if (newUser>=0 )
+            if (newUser>=0 && Id!=newUser)
                 _otherUsers.Add(newUser);
         }
 
@@ -129,15 +149,26 @@ namespace Lab01.Entities
         {
             return _transactions.GetRange(start, (end - start));
         }
-        public Transaction changeTransactionSum(Transaction tr, double newSum)
+        public void changeTransactionSum(int trId, decimal newSum)
         {
-            var index = _transactions.IndexOf(tr);
-            var modified = tr;
-            modified.Sum = newSum;
-            _transactions.Remove(tr);
-            _transactions.Insert(index, modified);
-            return modified;
+            foreach (var tr in _transactions)
+                if (tr.Id == trId)
+                    tr.Sum = newSum;
         }
+        public void changeTransactionCurrency(int trId, Currency value)
+        {
+            foreach (var tr in _transactions)
+                if (tr.Id == trId)
+                    tr.Currency = value;
+        }
+
+        public void changeTransactionDescription(int trId, string value)
+        {
+            foreach (var tr in _transactions)
+                if (tr.Id == trId)
+                    tr.Description = value;
+        }
+
         public override string ToString()
         {
             return $"Id: {Id}, Name: {Name}\nDescription: {Description}";
