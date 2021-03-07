@@ -9,7 +9,7 @@ namespace Lab01.Entities
         private string _color; 
         private string _icon;
 
-        private static int IdCounter;
+        private static int IdCounter = 0;
 
         public int Id
         {
@@ -19,26 +19,14 @@ namespace Lab01.Entities
 
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
+            get { return _name; }
+            set { _name = value; }
         }
 
         public string? Description
         {
-            get
-            {
-                return _description;
-            }
-            set
-            {
-                _description = value;
-            }
+            get { return _description; }
+            set { _description = value; }
         }
 
         public Category(string name, string description, string color, string icon)

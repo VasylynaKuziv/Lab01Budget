@@ -209,21 +209,22 @@ namespace Lab01.Entities
         }
 
 
+        public bool validateDate(DateTime dt)
+        {
+            return (dt.Date < DateTime.Today && DateTime.Now.Month - dt.Month == 1);
+        }
+
+
         public decimal getLastMonthIncome()
         {
             decimal income = 0;
-
-            DateTime today = DateTime.Now;
-
-            string currMonth = today.ToString("M");
 
             foreach (Transaction tr in Transactions)
             {
                 int rate = (int)tr.Currency;
                 decimal sum = tr.Sum;
-                string month = tr.Date.ToString("M");
 
-                if (tr.ReceiverId == Id && month.Equals(currMonth))
+                if (tr.ReceiverId == Id && validateDate(tr.Date))
                 {
                     income += rate * sum;
                 }
@@ -239,17 +240,12 @@ namespace Lab01.Entities
 
             decimal expenses = 0;
 
-            DateTime today = DateTime.Now;
-
-            string currMonth = today.ToString("M");
-
             foreach (Transaction tr in Transactions)
             {
                 int rate = (int)tr.Currency;
                 decimal sum = tr.Sum;
-                string month = tr.Date.ToString("M");
 
-                if (tr.SenderId == Id && month.Equals(currMonth))
+                if (tr.SenderId == Id && validateDate(tr.Date))
                 {
                     expenses += rate * sum;
                 }

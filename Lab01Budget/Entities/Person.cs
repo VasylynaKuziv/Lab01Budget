@@ -11,7 +11,7 @@ namespace Lab01.Entities
         private List<Category> _categories;  
         private List<Wallet> _wallets;
 
-        private static int IdCounter;
+        private static int IdCounter = 0;
 
         public int Id
         {
@@ -21,55 +21,31 @@ namespace Lab01.Entities
 
         public string Surname
         {
-            get
-            {
-                return _surname;
-            }
-            set
-            {
-                _surname = value;
-            }
+            get { return _surname; }
+            set { _surname = value; }
         }
 
         public string Name
         {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
+            get { return _name; }
+            set { _name = value; }
         }
 
         public string Email
         {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-            }
+            get { return _email; }
+            set { _email = value; }
         }
 
         
         public List<Category> Categories
         {
-            get
-            {
-                return _categories;
-            }
+            get { return _categories; }
         }
 
         public List<Wallet> Wallets
         {
-            get
-            {
-                return _wallets;
-            }
+            get { return _wallets; }
         }
         
 
