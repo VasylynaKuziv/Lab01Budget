@@ -126,6 +126,12 @@ namespace Lab01.Entities
         {
             _categories.Add(category);
         }
+        public void renameCategory(int catId, string newName)
+        {
+            foreach (var cat in _categories.ToArray())
+                if (catId == cat.Id)
+                    _categories.Name = newName;
+        }
         public void removeCategory(int catId)
         {
             foreach (var cat in _categories.ToArray())
@@ -180,9 +186,6 @@ namespace Lab01.Entities
         {
             return $"Id: {Id}, Name: {Name}\nDescription: {Description}";
         }
-
-
-
 
         //added by Iryna
         public decimal getCurrentBalance()
@@ -256,10 +259,5 @@ namespace Lab01.Entities
             return expenses;
 
         }
-
-
-
-         
-        
     }
 }
