@@ -54,7 +54,7 @@ namespace Lab01.Entities
         {
             var result = true;
 
-            if (Id <= 0)
+            if (Id < 0)
                 result = false;
             if (String.IsNullOrWhiteSpace(Name))
                 result = false;

@@ -131,5 +131,54 @@ namespace Lab01.Tests
             wallet.removeCategory(wallet.Categories[0].Id);
             Assert.Equal(1, wallet.Categories.Count);
         }
+
+        [Fact]
+        public void getCurrentBalanceWithZeroInitBalance()
+        {
+            var cat = new Category("food", "red", "icon.png");
+            var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
+            Assert.Equal(0, wallet.getCurrentBalance());
+            wallet.receiveTransaction(200, Currency.dollar, cat.Id, 2, DateTime.Today);
+            Assert.Equal(5600, wallet.getCurrentBalance());
+            wallet.sendTransaction(100, Currency.dollar, cat.Id, 2, DateTime.Today);
+            Assert.Equal(2800, wallet.getCurrentBalance());
+        }
+        [Fact]
+        public void getCurrentBalance()
+        {
+            var cat = new Category("food", "red", "icon.png");
+            var wallet = new Wallet(" ", Currency.uan, 1000, 1, new List<Category>() { cat });
+            Assert.Equal(1000, wallet.getCurrentBalance());
+            wallet.receiveTransaction(200, Currency.dollar, cat.Id, 2, DateTime.Today);
+            Assert.Equal(6600, wallet.getCurrentBalance());
+        }
+        [Fact]
+        public void GetLastMonthExpenses()
+        {
+            var cat = new Category("food", "red", "icon.png");
+            var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
+            wallet.receiveTransaction(200, Currency.dollar, cat.Id, 2, new DateTime(2021, 3, 5));
+            wallet.sendTransaction(100, Currency.dollar, cat.Id, 2, new DateTime(2021, 3, 5));
+            wallet.sendTransaction(10, Currency.euro, cat.Id, 2, new DateTime(2021, 2, 27));
+            wallet.receiveTransaction(50, Currency.dollar, cat.Id, 2, new DateTime(2021, 1, 2));
+            wallet.sendTransaction(20, Currency.euro, cat.Id, 2, new DateTime(2020, 11, 27));
+
+            Assert.Equal(3130, wallet.GetLastMonthExpenses());
+        }
+        [Fact]
+        public void GetLastMonthIncomes()
+        {
+            var cat = new Category("food", "red", "icon.png");
+            var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
+            wallet.receiveTransaction(200, Currency.dollar, cat.Id, 2, new DateTime(2021, 3, 5));
+            wallet.receiveTransaction(200, Currency.dollar, cat.Id, 2, DateTime.Today);
+            wallet.sendTransaction(100, Currency.dollar, cat.Id, 2, new DateTime(2021, 3, 5));
+            wallet.sendTransaction(10, Currency.euro, cat.Id, 2, new DateTime(2021, 2, 27));
+            wallet.receiveTransaction(50, Currency.dollar, cat.Id, 2, new DateTime(2021, 1, 2));
+            wallet.sendTransaction(20, Currency.euro, cat.Id, 2, new DateTime(2020, 11, 27));
+
+            Assert.Equal(12600, wallet.getLastMonthIncome());
+        }
+
     }
 }
