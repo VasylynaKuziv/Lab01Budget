@@ -139,7 +139,7 @@ namespace Lab01.Entities
         }
         public void shareWallet(int newUser)
         {
-            if (newUser>=0 && Id!=newUser)
+            if (newUser>=0 && OwnerId!=newUser)
                 _otherUsers.Add(newUser);
         }
 

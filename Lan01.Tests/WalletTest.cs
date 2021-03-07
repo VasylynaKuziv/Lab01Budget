@@ -56,8 +56,8 @@ namespace Lab01.Tests
         {
             var cat = new Category("food", "red", "icon.png");
             var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
-            for( int i =0; i<10; i++)
-                wallet.receiveTransaction(100*i, Currency.dollar, cat.Id, 2, DateTime.Today);
+            for (int i = 0; i < 10; i++)
+                wallet.receiveTransaction(100 * i, Currency.dollar, cat.Id, 2, DateTime.Today);
             var last10 = wallet.getLastTenTransaction();
             Assert.Equal(10, last10.Count);
         }
@@ -89,7 +89,7 @@ namespace Lab01.Tests
             var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
             for (int i = 0; i < 20; i++)
                 wallet.receiveTransaction(i, Currency.dollar, cat.Id, 2, DateTime.Today);
-            var res = wallet.getSomeTransactions(10,15);
+            var res = wallet.getSomeTransactions(10, 15);
             Assert.Equal(10, res[0].Sum);
             Assert.Equal(5, res.Count);
         }
@@ -179,6 +179,13 @@ namespace Lab01.Tests
 
             Assert.Equal(11200, wallet.getLastMonthIncome());
         }
-
+        [Fact]
+        public void ShareWallet()
+        {
+            var cat = new Category("food", "red", "icon.png");
+            var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
+            wallet.shareWallet(5);
+            Assert.Equal(1, wallet.OtherUsers.Count);
+        }
     }
 }
