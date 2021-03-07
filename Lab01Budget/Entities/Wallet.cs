@@ -210,7 +210,8 @@ namespace Lab01.Entities
 
         public bool validateDate(DateTime dt)
         {
-            return (dt.Date < DateTime.Today && DateTime.Now.Month - dt.Month == 1);
+            DateTime lastMonth = DateTime.Today.AddMonths(-1);
+            return (dt > DateTime.Today.AddMonths(-1) && dt <= DateTime.Today);
         }
 
 

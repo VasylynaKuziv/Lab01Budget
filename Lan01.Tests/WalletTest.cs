@@ -177,7 +177,7 @@ namespace Lab01.Tests
             wallet.receiveTransaction(50, Currency.dollar, cat.Id, 2, new DateTime(2021, 1, 2));
             wallet.sendTransaction(20, Currency.euro, cat.Id, 2, new DateTime(2020, 11, 27));
 
-            Assert.Equal(12600, wallet.getLastMonthIncome());
+            Assert.Equal(11200, wallet.getLastMonthIncome());
         }
 
     }
