@@ -130,7 +130,7 @@ namespace Lab01.Entities
         {
             foreach (var cat in _categories.ToArray())
                 if (catId == cat.Id)
-                    _categories.Name = newName;
+                    cat.Name = newName;
         }
         public void removeCategory(int catId)
         {
