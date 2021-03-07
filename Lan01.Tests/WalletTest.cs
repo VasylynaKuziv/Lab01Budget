@@ -48,8 +48,17 @@ namespace Lab01.Tests
             var cat = new Category("food", "red", "icon.png");
             var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
             wallet.sendTransaction(100, Currency.dollar, cat.Id, 2, DateTime.Today);
-            wallet.deleteTransaction(2);
+            wallet.deleteTransaction(wallet.Transactions[0].Id);
             Assert.Equal(0, wallet.Transactions.Count);
+        }
+        [Fact]
+        public void getLast10()
+        {
+            var cat = new Category("food", "red", "icon.png");
+            var wallet = new Wallet(" ", Currency.uan, 0, 1, new List<Category>() { cat });
+            wallet.sendTransaction(100, Currency.dollar, cat.Id, 2, DateTime.Today);
+            var last10 = wallet.getLastTenTransaction();
+            Assert.Equal(1, last10.Count);
         }
 
     }

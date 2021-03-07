@@ -140,14 +140,21 @@ namespace Lab01.Entities
 
         public List<Transaction> getLastTenTransaction()
         {
+            List<Transaction> result;
             _transactions.Reverse();
-            var res = _transactions.GetRange(0, 10);
+            if (_transactions.Count < 10)
+                result = _transactions.GetRange(0, _transactions.Count);
+            else 
+                result = _transactions.GetRange(0, 10);
             _transactions.Reverse();
-            return res;
+            return result;
         }
         public List<Transaction> getSomeTransactions(int start, int end)
         {
-            return _transactions.GetRange(start, (end - start));
+            if (start < 0 || end > _transactions.Count||start>end)
+                return new List<Transaction>();
+            var result = _transactions.GetRange(start, (end - start));
+            return result;
         }
         public void changeTransactionSum(int trId, decimal newSum)
         {
