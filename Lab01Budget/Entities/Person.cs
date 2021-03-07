@@ -124,6 +124,9 @@ namespace Lab01.Entities
         public void addSharedWallet(Wallet wallet)
         {
             _wallets.Add(wallet);
+            wallet.shareWallet(Id);
         }
+
+        
     }
 }
