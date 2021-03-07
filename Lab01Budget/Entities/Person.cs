@@ -127,6 +127,58 @@ namespace Lab01.Entities
             wallet.shareWallet(Id);
         }
 
-        
+
+        public void addCategoryInWallet(int walletId, Category category)
+        {
+            if (!Categories.Contains(category))
+            {
+                return;
+            }
+
+            foreach (Wallet wallet in Wallets)
+            {
+                if (wallet.Id == walletId && wallet.OwnerId==Id)
+                {
+                    wallet.addCategory(category);
+                }
+            }
+        }
+
+        public void renameCategoryInWallet(int walletId, int categoryID, string newName)
+        {
+            bool exists = false;
+            foreach (Category category in Categories)
+            {
+                if (category.Id == categoryID)
+                {
+                    exists = true;
+                }
+            }
+
+            if (!exists)
+            {
+                return;
+            }
+
+            foreach (Wallet wallet in Wallets)
+            {
+                if (wallet.Id == walletId && wallet.OwnerId == Id)
+                {
+                    wallet.renameCategory(categoryID, newName);
+                }
+            }
+        }
+
+        public void deleteCategoryInWallet(int walletId, Category category)
+        {
+
+            foreach (Wallet wallet in Wallets)
+            {
+                if (wallet.Id == walletId && wallet.OwnerId == Id)
+                {
+                    wallet.removeCategory(category.Id);
+                }
+            }
+        }
     }
 }
