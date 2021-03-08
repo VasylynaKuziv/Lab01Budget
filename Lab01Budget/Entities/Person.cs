@@ -95,8 +95,13 @@ namespace Lab01.Entities
 
             return result;
         }
-
-
+        
+        public void addWallet(Wallet wallet)
+        {
+            _wallets.Add(wallet);
+            wallet.OwnerId = Id;
+        }
+        
         public void addSharedWallet(Wallet wallet)
         {
             _wallets.Add(wallet);
@@ -106,10 +111,6 @@ namespace Lab01.Entities
 
         public void addCategoryInWallet(int walletId, Category category)
         {
-            if (!Categories.Contains(category))
-            {
-                return;
-            }
 
             foreach (Wallet wallet in Wallets)
             {
@@ -120,39 +121,26 @@ namespace Lab01.Entities
             }
         }
 
-        public void renameCategoryInWallet(int walletId, int categoryID, string newName)
+        public void renameCategoryInWallet(int walletId, int categoryId, string newName)
         {
-            bool exists = false;
-            foreach (Category category in Categories)
-            {
-                if (category.Id == categoryID)
-                {
-                    exists = true;
-                }
-            }
-
-            if (!exists)
-            {
-                return;
-            }
 
             foreach (Wallet wallet in Wallets)
             {
                 if (wallet.Id == walletId && wallet.OwnerId == Id)
                 {
-                    wallet.renameCategory(categoryID, newName);
+                    wallet.renameCategory(categoryId, newName);
                 }
             }
         }
 
-        public void deleteCategoryInWallet(int walletId, Category category)
+        public void deleteCategoryInWallet(int walletId, int categoryId)
         {
 
             foreach (Wallet wallet in Wallets)
             {
                 if (wallet.Id == walletId && wallet.OwnerId == Id)
                 {
-                    wallet.removeCategory(category.Id);
+                    wallet.removeCategory(categoryId);
                 }
             }
         }

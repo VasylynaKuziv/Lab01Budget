@@ -1,5 +1,4 @@
 ﻿using System;
-using Lab01.Entities;
 
 namespace Lab01Budget
 {
@@ -9,7 +8,6 @@ namespace Lab01Budget
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-
         }
     }
 }
