@@ -2,6 +2,7 @@
 
 using Budgets.GUI.WPF.Navigation;
 using Budgets.Models.Users;
+using Budgets.Services;
 using Prism.Commands;
 using System;
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace Budgets.GUI.WPF.Authentication
         {
             get
             {
-                return _regUser.Password;
+                    return _regUser.Password;
             }
             set
             {
@@ -60,6 +61,38 @@ namespace Budgets.GUI.WPF.Authentication
                 if (_regUser.LastName != value)
                 {
                     _regUser.LastName = value;
+                    OnPropertyChanged();
+                    SignUpCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+        public string FirstName
+        {
+            get
+            {
+                return _regUser.FirstName;
+            }
+            set
+            {
+                if (_regUser.FirstName != value)
+                {
+                    _regUser.FirstName = value;
+                    OnPropertyChanged();
+                    SignUpCommand.RaiseCanExecuteChanged();
+                }
+            }
+        }
+        public string Email
+        {
+            get
+            {
+                return _regUser.Email;
+            }
+            set
+            {
+                if (_regUser.Email != value)
+                {
+                    _regUser.Email = value;
                     OnPropertyChanged();
                     SignUpCommand.RaiseCanExecuteChanged();
                 }
@@ -106,7 +139,9 @@ namespace Budgets.GUI.WPF.Authentication
 
         private bool IsSignUpEnabled()
         {
-            return !String.IsNullOrWhiteSpace(Login) && !String.IsNullOrWhiteSpace(Password) && !String.IsNullOrWhiteSpace(LastName);
+            return !String.IsNullOrWhiteSpace(Login) && !String.IsNullOrWhiteSpace(Password)
+                && !String.IsNullOrWhiteSpace(LastName) && !String.IsNullOrWhiteSpace(FirstName)
+                && !String.IsNullOrWhiteSpace(Email);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
