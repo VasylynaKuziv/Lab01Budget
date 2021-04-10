@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{134C4A4A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lan01.Tests", "Lan01.Tests\Lan01.Tests.csproj", "{5CCF9D14-50E5-450A-8C2F-DE045BD63CC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetsWPF", "BudgetsWPF\BudgetsWPF.csproj", "{3FAAFF0F-5FAB-4E71-B47F-C05279226584}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetsWPF", "GUI\BudgetsWPF\BudgetsWPF.csproj", "{E5B398E2-678B-4719-A1A0-278EAD00F0C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,10 +25,10 @@ Global
 		{5CCF9D14-50E5-450A-8C2F-DE045BD63CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CCF9D14-50E5-450A-8C2F-DE045BD63CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CCF9D14-50E5-450A-8C2F-DE045BD63CC1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3FAAFF0F-5FAB-4E71-B47F-C05279226584}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3FAAFF0F-5FAB-4E71-B47F-C05279226584}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3FAAFF0F-5FAB-4E71-B47F-C05279226584}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3FAAFF0F-5FAB-4E71-B47F-C05279226584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5B398E2-678B-4719-A1A0-278EAD00F0C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5B398E2-678B-4719-A1A0-278EAD00F0C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5B398E2-678B-4719-A1A0-278EAD00F0C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5B398E2-678B-4719-A1A0-278EAD00F0C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
