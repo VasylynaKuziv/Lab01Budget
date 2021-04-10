@@ -1,4 +1,5 @@
-﻿using Prism.Mvvm;
+﻿using Budgets.GUI.WPF.Navigation;
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Budgets.GUI.WPF.Wallets
 {
-    public class WalletsViewModel : BindableBase, IMainNavigatable
+    public class WalletsViewModel : BindableBase, INavigatable<MainNavigatableTypes>
     {
         public MainNavigatableTypes Type
         {

@@ -1,19 +1,23 @@
 ﻿
 
+using Budgets.GUI.WPF.Navigation;
 using Budgets.Models.Users;
 using Prism.Commands;
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace Budgets.GUI.WPF.Authentication
 {
-    public class SignInViewModel : INotifyPropertyChanged, IAuthNavigatable
+    public class SignInViewModel : INotifyPropertyChanged, INavigatable<AuthNavigatableTypes>
     {
         private AuthenticationUser _authUser = new AuthenticationUser();
         private Action _gotoSignUp;
         private Action _gotoWallets;
+
+        private bool _isEnabled = true;
 
         public string Login
         {
@@ -70,7 +74,7 @@ namespace Budgets.GUI.WPF.Authentication
             _gotoWallets = gotoWallets;
         }
 
-        private void SignIn()
+        private async void SignIn()
         {
             if (String.IsNullOrWhiteSpace(Login) || String.IsNullOrWhiteSpace(Password))
                 MessageBox.Show("Login or password is empty.");
@@ -80,18 +84,35 @@ namespace Budgets.GUI.WPF.Authentication
                 User user = null;
                 try
                 {
-                    user = authService.Authenticate(_authUser);
+                    IsEnabled = false;
+                    user = await Task.Run(() => authService.Authenticate(_authUser));
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Sign In failed: {ex.Message}");
                     return;
                 }
+                finally
+                {
+                    IsEnabled = true;
+                }
                 MessageBox.Show($"Sign In was successful for user {user.FirstName} {user.LastName}");
                 _gotoWallets.Invoke();
             }
         }
 
+        public bool IsEnabled
+        {
+            get
+            {
+                return _isEnabled;
+            }
+            set
+            {
+                _isEnabled = value;
+                OnPropertyChanged();
+            }
+        }
         private bool IsSignInEnabled()
         {
             return !String.IsNullOrWhiteSpace(Login) && !String.IsNullOrWhiteSpace(Password);

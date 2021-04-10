@@ -1,5 +1,6 @@
 ﻿
 
+using Budgets.GUI.WPF.Navigation;
 using Budgets.Models.Users;
 using Prism.Commands;
 using System;
@@ -9,7 +10,7 @@ using System.Windows;
 
 namespace Budgets.GUI.WPF.Authentication
 {
-    public class SignUpViewModel : INotifyPropertyChanged, IAuthNavigatable
+    public class SignUpViewModel : INotifyPropertyChanged, INavigatable<AuthNavigatableTypes>
     {
         private RegistrationUser _regUser = new RegistrationUser();
         private Action _gotoSignIn;

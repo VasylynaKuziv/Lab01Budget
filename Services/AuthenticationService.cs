@@ -8,7 +8,7 @@ namespace Budgets.GUI.WPF.Authentication
 {
     public class AuthenticationService
     {
-        private static List<DBUser> Users = new List<DBUser>();
+        private static List<DBUser> Users = new List<DBUser>() { new DBUser("1", "1", "1", "1", "1") };
         public User Authenticate(AuthenticationUser authUser)
         {
             if (String.IsNullOrWhiteSpace(authUser.Login) || String.IsNullOrWhiteSpace(authUser.Password))

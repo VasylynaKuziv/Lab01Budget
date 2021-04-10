@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Budgets.GUI.WPF.Authentication
+namespace Budgets.GUI.WPF.Navigation
 {
     public enum AuthNavigatableTypes
     {
@@ -13,10 +13,10 @@ namespace Budgets.GUI.WPF.Authentication
     }
 
 
-    public interface IAuthNavigatable
+    public enum MainNavigatableTypes
     {
-        public AuthNavigatableTypes Type { get; }
-
-        public void ClearSensitiveData();
+        Authentication,
+        Wallets
     }
+
 }
