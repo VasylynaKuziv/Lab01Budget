@@ -73,6 +73,11 @@ namespace Budgets.GUI.WPF.Authentication
             SignUpCommand = new DelegateCommand(_gotoSignUp);
             _gotoWallets = gotoWallets;
         }
+        public SignInViewModel()
+        {
+            SignInCommand = new DelegateCommand(SignIn, IsSignInEnabled);
+            CloseCommand = new DelegateCommand(() => Environment.Exit(0));
+        }
 
         private async void SignIn()
         {

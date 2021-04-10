@@ -47,7 +47,7 @@ namespace Budgets.GUI.WPF.Authentication
                 throw new Exception("User already exists");
             if (String.IsNullOrWhiteSpace(regUser.Login) || String.IsNullOrWhiteSpace(regUser.Password) || String.IsNullOrWhiteSpace(regUser.LastName))
                 throw new ArgumentException("Something is Empty. Fill everething in, please/");
-            dbUser = new DBUser(regUser.FirstName + "First", regUser.LastName, regUser.Email,
+            dbUser = new DBUser(regUser.FirstName, regUser.LastName, regUser.Email,
                 regUser.Login, PasswordEncoder.Encrypt(regUser.Password));
             Users.Add(dbUser);
             return true;
