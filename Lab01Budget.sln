@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetsWPF", "GUI\BudgetsWP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{DAC28F70-58B1-49B0-B991-1A4F610397A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{62D4AE9B-E4A3-472B-AFFA-C6F1F0D1F318}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{DAC28F70-58B1-49B0-B991-1A4F610397A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAC28F70-58B1-49B0-B991-1A4F610397A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAC28F70-58B1-49B0-B991-1A4F610397A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D4AE9B-E4A3-472B-AFFA-C6F1F0D1F318}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D4AE9B-E4A3-472B-AFFA-C6F1F0D1F318}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D4AE9B-E4A3-472B-AFFA-C6F1F0D1F318}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D4AE9B-E4A3-472B-AFFA-C6F1F0D1F318}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

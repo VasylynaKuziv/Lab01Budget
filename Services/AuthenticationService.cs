@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Budgets.Models.Users;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace Budgets.GUI.WPF.Authentication
 {
     public class AuthenticationService

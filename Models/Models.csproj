@@ -5,8 +5,4 @@
     <RootNamespace>Budgets.Models</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Users\" />
-  </ItemGroup>
-
 </Project>

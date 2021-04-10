@@ -1,5 +1,5 @@
 ﻿
-namespace Budgets.GUI.WPF
+namespace Budgets.Models.Users
 {
     public class RegistrationUser
     {

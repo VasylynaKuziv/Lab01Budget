@@ -15,16 +15,14 @@ using System.Windows.Shapes;
 
 namespace Budgets.GUI.WPF.Authentication
 {
-    public partial class SignInView : UserControl
+    /// <summary>
+    /// Interaction logic for AuthenticationView.xaml
+    /// </summary>
+    public partial class AuthenticationView : UserControl
     {
-        public SignInView()
+        public AuthenticationView()
         {
             InitializeComponent();
-        }
-
-        private void TbPassword_OnPasswordChanged(object sender, RoutedEventArgs e)
-        {
-            ((SignInViewModel)DataContext).Password = TbPassword.Password;
         }
     }
 }

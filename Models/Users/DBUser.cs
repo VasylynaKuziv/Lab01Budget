@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace Budgets.GUI.WPF
+namespace Budgets.Models.Users
 {
     public class DBUser
     {

@@ -1,5 +1,6 @@
 ﻿
 
+using Budgets.Models.Users;
 using Prism.Commands;
 using System;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Windows;
 
 namespace Budgets.GUI.WPF.Authentication
 {
-    public class SignInViewModel : INotifyPropertyChanged
+    public class SignInViewModel : INotifyPropertyChanged, IAuthNavigatable
     {
         private AuthenticationUser _authUser = new AuthenticationUser();
         private Action _gotoSignUp;
@@ -52,6 +53,14 @@ namespace Budgets.GUI.WPF.Authentication
         public DelegateCommand CloseCommand { get; }
         public DelegateCommand SignUpCommand { get; }
 
+        public AuthNavigatableTypes Type
+        {
+            get
+            {
+                return AuthNavigatableTypes.SignIn;
+            }
+        }
+
         public SignInViewModel(Action gotoSignUp, Action gotoWallets)
         {
             SignInCommand = new DelegateCommand(SignIn, IsSignInEnabled);
@@ -93,6 +102,11 @@ namespace Budgets.GUI.WPF.Authentication
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void ClearSensitiveData()
+        {
+            Password = "";
         }
     }
 }
