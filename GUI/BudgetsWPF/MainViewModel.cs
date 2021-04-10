@@ -1,12 +1,7 @@
 ﻿using Budgets.GUI.WPF.Authentication;
 using Budgets.GUI.WPF.Navigation;
 using Budgets.GUI.WPF.Wallets;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Budgets.GUI.WPF
 {

@@ -27,7 +27,7 @@ namespace Lab01.Entities
         public string Name 
         { 
             get {return _name; }
-            private set{ _name = value; }
+             set{ _name = value; }
         }
         public string? Description
         {
@@ -76,7 +76,13 @@ namespace Lab01.Entities
             InstanceCount += 1;
         }
         
-
+        public Wallet(string name, decimal initBalance)
+        {
+            _id = InstanceCount;
+            _name = name;
+            _initBalance = initBalance;
+            InstanceCount += 1;
+        }
         public bool Validate()
         {
             var result = true;
