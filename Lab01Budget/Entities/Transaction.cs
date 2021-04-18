@@ -15,7 +15,7 @@ namespace Lab01.Entities
 
         private int _id;
         private decimal _sum;
-        private Currency _currency;
+        private string _currency;
         private Category _category;
         private string? _description;
         private DateTime _date;
@@ -33,7 +33,7 @@ namespace Lab01.Entities
             get { return _sum; }
             set { _sum = value; }
         }
-        public Currency Currency
+        public string Currency
         {
             get { return _currency; }
             set { _currency = value; }
@@ -65,7 +65,7 @@ namespace Lab01.Entities
             set { _receiverId = value; }
         }
 
-        public Transaction(decimal sum, Currency currency, Category category, DateTime date, int senderId, int receiverId, string description = "")
+        public Transaction(decimal sum, string currency, Category category, DateTime date, int senderId, int receiverId, string description = "")
         {
             _id = InstanceCount;
             _sum = sum;

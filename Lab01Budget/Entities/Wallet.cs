@@ -1,9 +1,9 @@
-
 using System;
 using System.Collections.Generic;
 
 namespace Lab01.Entities
 {
+
     public class Wallet 
     {
         private static int InstanceCount = 0;
@@ -11,13 +11,18 @@ namespace Lab01.Entities
         private int _id;
         private string _name;
         private string? _description;
-        private Currency _mainCurrency;
+        private string _mainCurrency;
         private decimal _initBalance;
         private int _ownerId;
         private HashSet<int> _otherUsers;
         private List<Transaction> _transactions;
         private List<Category> _categories;
 
+        public static Dictionary<string, int> allCurrency = new Dictionary<string, int>
+        {
+            {"UAH", 1},
+            {"USD", 28}
+        };
 
         public int Id
         {
@@ -34,10 +39,9 @@ namespace Lab01.Entities
             get { return _description; }
             set { _description = value; }
         }
-        public Currency MainCurrency
+        public string MainCurrency
         {
             get { return _mainCurrency; }
-            set { _mainCurrency = value; }
         }
         public decimal InitBalance
         {
@@ -61,7 +65,7 @@ namespace Lab01.Entities
         {
             get { return _categories; }
         }
-        public Wallet(string name, Currency mainCurrency, decimal initBalance, int ownerId, List<Category> categories, string description = "")
+        public Wallet(string name, string mainCurrency, decimal initBalance, int ownerId, List<Category> categories, string description = "")
         {
             _id = InstanceCount;
             _name = name;
@@ -105,15 +109,15 @@ namespace Lab01.Entities
                     return cat;
             return null;
         }
-        public void sendTransaction(decimal sum, Currency currency, int categoryId, int receiverId, DateTime date, string description = "")
+        public void sendTransaction(decimal sum, string currency, int categoryId, int receiverId, DateTime date, string description = "")
         {
             var category = hasCategory(categoryId);
-            if (category !=null && getCurrentBalance() >= (sum * (int) currency ))
+            if (category !=null && getCurrentBalance() >= (sum * allCurrency[currency]))
             {
                 _transactions.Add(new Transaction(sum, currency, category,date, Id, receiverId,description));
             }
         }
-        public void receiveTransaction(decimal sum, Currency currency, int categoryId, int senderId, DateTime date, string description = "")
+        public void receiveTransaction(decimal sum, string currency, int categoryId, int senderId, DateTime date, string description = "")
         {
             var category = hasCategory(categoryId);
             if (category != null)
@@ -173,7 +177,7 @@ namespace Lab01.Entities
                 if (tr.Id == trId)
                     tr.Sum = newSum;
         }
-        public void changeTransactionCurrency(int trId, Currency value)
+        public void changeTransactionCurrency(int trId, string value)
         {
             foreach (var tr in _transactions)
                 if (tr.Id == trId)
@@ -195,10 +199,18 @@ namespace Lab01.Entities
         //added by Iryna
         public decimal getCurrentBalance()
         {
-            decimal balance = InitBalance * (int)MainCurrency; ;
-
+            //remove
+            if (MainCurrency == null)
+            {
+                return InitBalance;
+            }
+            decimal balance = InitBalance * allCurrency[MainCurrency];
+            if (Transactions == null)
+            {
+                return balance;
+            }
             foreach (Transaction tr in Transactions) {
-                int rate = (int)tr.Currency;
+                int rate = allCurrency[tr.Currency];
                 decimal sum = tr.Sum;
                 if(tr.ReceiverId== Id)
                 {
@@ -224,10 +236,13 @@ namespace Lab01.Entities
         public decimal getLastMonthIncome()
         {
             decimal income = 0;
-
+            if (Transactions == null)
+            {
+                return 0;
+            }
             foreach (Transaction tr in Transactions)
             {
-                int rate = (int)tr.Currency;
+                int rate = allCurrency[tr.Currency];
                 decimal sum = tr.Sum;
 
                 if (tr.ReceiverId == Id && validateDate(tr.Date))
@@ -245,10 +260,13 @@ namespace Lab01.Entities
         {
 
             decimal expenses = 0;
-
+            if (Transactions == null)
+            {
+                return 0;
+            }
             foreach (Transaction tr in Transactions)
             {
-                int rate = (int)tr.Currency;
+                int rate = allCurrency[tr.Currency];
                 decimal sum = tr.Sum;
 
                 if (tr.SenderId == Id && validateDate(tr.Date))

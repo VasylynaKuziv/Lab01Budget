@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Budgets.GUI.WPF.Wallets
 {
@@ -11,5 +12,6 @@ namespace Budgets.GUI.WPF.Wallets
         {
             InitializeComponent();
         }
+
     }
 }
