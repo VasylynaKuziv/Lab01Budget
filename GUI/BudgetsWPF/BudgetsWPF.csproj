@@ -17,12 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Lab01Budget\Lab01Budget.csproj" />
-    <ProjectReference Include="..\..\Models\Models.csproj" />
-    <ProjectReference Include="..\..\Services\Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="Images\logo.png" />
   </ItemGroup>
 

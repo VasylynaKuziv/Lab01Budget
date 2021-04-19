@@ -19,8 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Lab01Budget\Lab01Budget.csproj" />
-  </ItemGroup>
-
 </Project>

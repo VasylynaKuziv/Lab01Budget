@@ -12,11 +12,17 @@ namespace Budgets.GUI.WPF.Navigation
         SignUp
     }
 
-
     public enum MainNavigatableTypes
     {
         Authentication,
         Wallets
     }
 
+    public enum WalletsNavigatableTypes
+    {
+        Wallet,
+        WalletCreation,
+        TransactionCreation,
+        CategoryCreation
+    }
 }

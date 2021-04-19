@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Budgets.GUI.WPF"
              xmlns:local1="clr-namespace:Budgets.GUI.WPF.Wallets"
              xmlns:local2="clr-namespace:Budgets.GUI.WPF.Authentication"
              mc:Ignorable="d" 
@@ -12,8 +11,8 @@
         <DataTemplate DataType="{ x:Type local2:AuthViewModel}">
             <local2:AuthenticationView></local2:AuthenticationView>
         </DataTemplate>
-        <DataTemplate DataType="{ x:Type local1:WalletsViewModel}">
-            <local1:WalletsView></local1:WalletsView>
+        <DataTemplate DataType="{ x:Type local1:WalletMainViewModel}">
+            <local1:WalletBaseView></local1:WalletBaseView>
         </DataTemplate>
     </UserControl.Resources>
     <ContentControl Content="{Binding CurrentViewModel}"></ContentControl>

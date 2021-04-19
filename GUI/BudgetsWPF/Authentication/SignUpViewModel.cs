@@ -1,8 +1,5 @@
-﻿
-
-using Budgets.GUI.WPF.Navigation;
+﻿using Budgets.GUI.WPF.Navigation;
 using Budgets.Models.Users;
-using Budgets.Services;
 using Prism.Commands;
 using System;
 using System.ComponentModel;
@@ -119,13 +116,13 @@ namespace Budgets.GUI.WPF.Authentication
             SignInCommand = new DelegateCommand(_gotoSignIn);
         }
 
-        private void SignUp()
+        private async void SignUp()
         {
 
             var authService = new AuthenticationService();
             try
             {
-                authService.RegisterUser(_regUser);
+                await authService.RegisterUser(_regUser);
             }
             catch (Exception ex)
             {
@@ -154,6 +151,11 @@ namespace Budgets.GUI.WPF.Authentication
         public void ClearSensitiveData()
         {
             _regUser = new RegistrationUser();
+        }
+
+
+        public void Update()
+        {
         }
     }
 }

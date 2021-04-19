@@ -1,10 +1,6 @@
 ﻿using Budgets.GUI.WPF.Navigation;
-using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Budgets.GUI.WPF.Authentication
 {
@@ -41,6 +37,11 @@ namespace Budgets.GUI.WPF.Authentication
         public void ClearSensitiveData()
         {
             CurrentViewModel.ClearSensitiveData();
+        }
+
+        public void Update()
+        {
+            CurrentViewModel.Update();
         }
     }
 }

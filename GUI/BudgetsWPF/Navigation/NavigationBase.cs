@@ -1,9 +1,7 @@
-﻿using Prism.Mvvm;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Prism.Mvvm;
 
 namespace Budgets.GUI.WPF.Navigation
 {
@@ -24,7 +22,11 @@ namespace Budgets.GUI.WPF.Navigation
         protected void Navigate(TObject type)
         {
             if (CurrentViewModel != null && CurrentViewModel.Type.Equals(type))
+            {
+                CurrentViewModel.Update();
                 return;
+            }
+
             INavigatable<TObject> viewModel = _viewModels.FirstOrDefault(authNavigatable => authNavigatable.Type.Equals(type));
 
             if (viewModel == null)
@@ -33,6 +35,7 @@ namespace Budgets.GUI.WPF.Navigation
                 _viewModels.Add(viewModel);
             }
             viewModel.ClearSensitiveData();
+            viewModel.Update();
             CurrentViewModel = viewModel;
             RaisePropertyChanged(nameof(CurrentViewModel));
         }

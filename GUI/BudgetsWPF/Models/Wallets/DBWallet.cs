@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-
+using DataStorage;
 
 namespace Lab01Budget.Entities.Storage
 {
-    public class WalletDb : IStorable
+    public class DBWallet : IStorable
     {
-        public WalletDb(string name, decimal startBalance, string description, string currency)
+        public Guid Guid { get; }
+        public string Name { get; set; }
+        public decimal CurrBalance { get; set; }
+        public string Description { get; set; }
+        public string Currency { get; set; }
+        public DBWallet(string name, decimal startBalance, string description, string currency)
         {
             Guid = Guid.NewGuid();
             Name = name;
@@ -16,7 +21,7 @@ namespace Lab01Budget.Entities.Storage
         }
 
         [JsonConstructor]
-        public WalletDb(Guid guid, string name, decimal currBalance, string description, string currency)
+        public DBWallet(Guid guid, string name, decimal currBalance, string description, string currency)
         {
             Guid = guid;
             Name = name;
@@ -25,15 +30,9 @@ namespace Lab01Budget.Entities.Storage
             Currency = currency;
         }
 
-        public WalletDb()
+        public DBWallet()
         {
             Guid = Guid.NewGuid();
         }
-
-        public Guid Guid { get; }
-        public string Name { get; set; }
-        public decimal CurrBalance { get; set; }
-        public string Description { get; set; }
-        public string Currency { get; set; }
     }
 }

@@ -2,7 +2,6 @@
 using Budgets.GUI.WPF.Navigation;
 using Budgets.GUI.WPF.Wallets;
 
-
 namespace Budgets.GUI.WPF
 {
     public class MainViewModel : NavigationBase<MainNavigatableTypes>
@@ -20,7 +19,7 @@ namespace Budgets.GUI.WPF
             }
             else
             {
-                return new WalletsViewModel();
+                return new WalletMainViewModel();
             }
         }
     }

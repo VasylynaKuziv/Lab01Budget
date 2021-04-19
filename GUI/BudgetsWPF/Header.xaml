@@ -7,7 +7,7 @@
              mc:Ignorable="d" >
     <Border Background ="Ivory">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Image Source="Images/logo.png" Height="100" Stretch="Uniform"></Image>
+            <Image Source="Images/logo.png" Height="80" Stretch="Uniform"></Image>
             <TextBlock Text="Budget Application" FontSize="30" VerticalAlignment="Center"></TextBlock>
         </StackPanel>
     </Border>

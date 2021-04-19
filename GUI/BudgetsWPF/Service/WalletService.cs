@@ -1,26 +1,41 @@
-﻿using System;
+﻿using DataStorage;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Lab01.Entities;
+using Lab01Budget.Entities.Storage;
+
 
 namespace Budgets.GUI.WPF.Service
 {
-    class WalletService
+    public class WalletService
     {
-        private static List<Wallet> Users = new List<Wallet>()
-        {
-            new Wallet("wal1", 57), 
-            new Wallet("wal2", 157),
-            new Wallet("wal3", 257),
-            new Wallet("wal4", 24),
-            new Wallet("wal5", 15),
-        };
+        private FileDataStorage<DBWallet> _storage = new FileDataStorage<DBWallet>();
+        public static Wallet CurrentWallet;
 
-        public List<Wallet> GetWallets()
+        public async Task<User> LoadUserWallets(User user)
         {
-            return Users.ToList();
+            var transactService = new TransactionService();
+            List<DBWallet> wallets = await _storage.GetAllAsyncForObject(user);
+            foreach (var wallet in wallets)
+            {
+                Wallet wallet_cr = Wallet.CreateWallet(user, wallet.Name, wallet.Currency, wallet.CurrBalance, wallet.Description);
+                await transactService.LoadTransactions(wallet_cr);
+
+            }
+            return user;
+        }
+
+        public async Task<bool> SaveUpdateWallet(User user, DBWallet wallet)
+        {
+            await _storage.AddOrUpdateAsyncForObject(wallet, user);
+            return true;
+        }
+
+        public async Task<bool> DeleteWallet(DBWallet wallet)
+        {
+            //var transactService = new TransactionService();
+            await _storage.RemoveObj(wallet);
+            return true;
         }
     }
 }

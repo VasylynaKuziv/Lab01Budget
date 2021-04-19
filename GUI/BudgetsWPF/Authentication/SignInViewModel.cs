@@ -1,7 +1,6 @@
-﻿
-
-using Budgets.GUI.WPF.Navigation;
+﻿using Budgets.GUI.WPF.Navigation;
 using Budgets.Models.Users;
+using Lab01.Entities;
 using Prism.Commands;
 using System;
 using System.ComponentModel;
@@ -101,7 +100,7 @@ namespace Budgets.GUI.WPF.Authentication
                 {
                     IsEnabled = true;
                 }
-                MessageBox.Show($"Sign In was successful for user {user.FirstName} {user.LastName}");
+                MessageBox.Show($"Sign In was successful for user {user.Name} {user.Surname}");
                 _gotoWallets.Invoke();
             }
         }
@@ -124,6 +123,10 @@ namespace Budgets.GUI.WPF.Authentication
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void Update()
+        {
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

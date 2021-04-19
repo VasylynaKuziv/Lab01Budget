@@ -2,6 +2,9 @@
 using Lab01.Entities;
 using System;
 using Prism.Commands;
+using Lab01Budget.Entities.Storage;
+using Budgets.GUI.WPF.Service;
+using Budgets.GUI.WPF.Authentication;
 
 namespace Budgets.GUI.WPF.Wallets
 {
@@ -9,18 +12,11 @@ namespace Budgets.GUI.WPF.Wallets
     {
         private Wallet _wallet;
 
-        public int Id
-        {
-            get
-            {
-                return _wallet.Id;
-            }
-        }
         public string Incomes
         {
             get
             {
-                return _wallet.getLastMonthIncome().ToString("#.##");
+                return _wallet.GetLastMonthIncome().ToString("#.##");
             }
         }
         public string Expenses
@@ -31,15 +27,6 @@ namespace Budgets.GUI.WPF.Wallets
             }
         }
 
-        public Wallet Wallet
-        {
-            get
-            {
-                return _wallet;
-            }
-        }
-
-        public string NameErr { get; set; }
         public string Name
         {
             get
@@ -49,7 +36,6 @@ namespace Budgets.GUI.WPF.Wallets
             set
             {
                 _wallet.Name = value;
-                //test
                 RaisePropertyChanged(nameof(DisplayName));
                 UpdateWalletCommand.RaiseCanExecuteChanged();
             }
@@ -58,8 +44,6 @@ namespace Budgets.GUI.WPF.Wallets
       
         public DelegateCommand UpdateWalletCommand { get; }
 
-
-        public string DescriptionErr { get; set; }
         public string Description
         {
             get
@@ -78,16 +62,16 @@ namespace Budgets.GUI.WPF.Wallets
         {
             get
             {
-                return _wallet.MainCurrency;
+                return _wallet.Currency;
             }
         }
 
         
-        public string CurrBalance
+        public string CurrentBalance
         {
             get
             {
-                return _wallet.getCurrentBalance().ToString("#.##");
+                return _wallet.CurrentBalance.ToString("#.##");
             }
 
         }
@@ -96,68 +80,52 @@ namespace Budgets.GUI.WPF.Wallets
         {
             get
             {
-                return $"{_wallet.Name} ({_wallet.getCurrentBalance():#.##} )";
+                return $"{_wallet.Name} ({_wallet.CurrentBalance:#.##} )";
             }
         }
-        
+
+        public Wallet Wallet
+        {
+            get
+            {
+                return _wallet;
+            }
+        }
+
+        public Guid Guid
+        {
+            get
+            {
+                return _wallet.Guid;
+            }
+
+        }
+
         public WalletDetailsViewModel(Wallet wallet)
         {
             _wallet = wallet;
-            UpdateWalletCommand = new DelegateCommand(UpdateWallet, IsValid);
+            UpdateWalletCommand = new DelegateCommand(UpdateWallet, checkInput);
         }
 
-        private bool IsValid()
+        private bool checkInput()
         {
-            bool valid = true;
-            if (String.IsNullOrWhiteSpace(Name))
-            {
-                NameErr = "Name can't be empty";
-                RaisePropertyChanged(nameof(NameErr));
-                valid = false;
-            }
-            else if (Name.Length > 20)
-            {
-                NameErr = "Name can't be more than 20 symbols";
-                RaisePropertyChanged(nameof(NameErr));
-                valid = false;
-            }
-            else
-            {
-                NameErr = "";
-                RaisePropertyChanged(nameof(NameErr));
-            }
-
-            if (String.IsNullOrWhiteSpace(Description))
-            {
-                DescriptionErr = "Description can't be empty";
-                RaisePropertyChanged(nameof(DescriptionErr));
-                valid = false;
-            }
-            else
-            {
-                DescriptionErr = "";
-                RaisePropertyChanged(nameof(DescriptionErr));
-            }
-
-            return valid;
+            return !String.IsNullOrWhiteSpace(Name) && !String.IsNullOrWhiteSpace(Description);
         }
 
 
         private async void UpdateWallet()
         {
-            //var service = new WalletService();
+            var service = new WalletService();
             try
             {
-               // WalletDb wallet = new WalletDb(_wallet.Guid, _wallet.Name, _wallet.CurrBalance, _wallet.Description,
-               //     _wallet.Currency);
-               // await service.SaveUpdateWallet(AuthenticationService.CurrentUser, wallet);
+               DBWallet wallet = new DBWallet(_wallet.Guid, _wallet.Name, _wallet.InitBalance, _wallet.Description,
+                    _wallet.Currency);
+                await service.SaveUpdateWallet(AuthenticationService.CurrentUser, wallet);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //MessageBox.Show($"Update wallet failed: {ex.Message}");
                 return;
             }
-            //MessageBox.Show($"Wallet updated");
         }
     }
 }

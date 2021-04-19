@@ -1,9 +1,7 @@
-﻿
-namespace Budgets.Models.Users
+﻿namespace Budgets.Models.Users
 {
     public class RegistrationUser
     {
-
         public string LastName { get; set; }
         public string FirstName { get; set; }
 

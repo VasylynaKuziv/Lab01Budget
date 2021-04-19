@@ -1,5 +1,4 @@
-﻿
-namespace Budgets.Models.Users
+﻿namespace Budgets.Models.Users
 {
     public class AuthenticationUser
     {

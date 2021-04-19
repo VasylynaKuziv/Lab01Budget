@@ -3,11 +3,11 @@
 namespace Budgets.GUI.WPF.Wallets
 {
     /// <summary>
-    /// Interaction logic for WalletDetailsView.xaml
+    /// Interaction logic for WalletCreateView.xaml
     /// </summary>
-    public partial class WalletDetailsView : UserControl
+    public partial class WalletCreateView : UserControl
     {
-        public WalletDetailsView()
+        public WalletCreateView()
         {
             InitializeComponent();
         }
