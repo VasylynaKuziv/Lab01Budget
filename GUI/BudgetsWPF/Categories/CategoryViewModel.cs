@@ -69,13 +69,26 @@ namespace Budgets.GUI.WPF.Categories
                 AddCategoryCommand.RaiseCanExecuteChanged();
             }
         }
-
+      /*  public Guid Guid
+        {
+            get
+            {
+                return _category.Guid;
+            }
+            set
+            {
+                _category.Guid = value;
+                OnPropertyChanged();
+                AddCategoryCommand.RaiseCanExecuteChanged();
+            }
+        }*/
         private async void CreateCategory()
         {
             var service = new UserService();
             try
             {
-                AuthenticationService.CurrentUser.Categories.Add(_category);
+                var cat = new Category(_category.Name, _category.Description);
+                AuthenticationService.CurrentUser.Categories.Add(cat);
                 await service.SaveChangesCategories(AuthenticationService.CurrentUser);
             }
             catch (Exception ex)

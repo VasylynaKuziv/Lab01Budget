@@ -16,6 +16,7 @@ namespace Budgets.GUI.WPF.Service
             await _storage.AddOrUpdateAsync(userDb);
             return true;
         }
+        
     }
 }
 

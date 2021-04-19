@@ -18,7 +18,7 @@ namespace Budgets.GUI.WPF.Service
             List<DBWallet> wallets = await _storage.GetAllAsyncForObject(user);
             foreach (var wallet in wallets)
             {
-                Wallet wallet_cr = Wallet.CreateWallet(user, wallet.Name, wallet.Currency, wallet.CurrBalance, wallet.Description);
+                Wallet wallet_cr = Wallet.CreateWallet(wallet.Guid, user, wallet.Name, wallet.Currency, wallet.CurrBalance, wallet.Description);
                 await transactService.LoadTransactions(wallet_cr);
 
             }
@@ -30,7 +30,7 @@ namespace Budgets.GUI.WPF.Service
             await _storage.AddOrUpdateAsyncForObject(wallet, user);
             return true;
         }
-
+       
         public async Task<bool> DeleteWallet(DBWallet wallet)
         {
             //var transactService = new TransactionService();

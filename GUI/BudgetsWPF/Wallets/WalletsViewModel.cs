@@ -60,6 +60,7 @@ namespace Budgets.GUI.WPF.Wallets
         public WalletsViewModel(Action gotoWalletCreation, Action gotoTransactionCreation, Action categoryCreation, Action update)
         {
             Wallets = new ObservableCollection<WalletDetailsViewModel>();
+        
             foreach (var wallet in AuthenticationService.CurrentUser.Wallets)
             {
                 Wallets.Add(new WalletDetailsViewModel(wallet));
@@ -92,7 +93,7 @@ namespace Budgets.GUI.WPF.Wallets
         {
 
             WalletService service = new WalletService();
-            DBWallet wallet = new DBWallet(_currentWallet.Guid, _currentWallet.Name, _currentWallet.Wallet.CurrentBalance, _currentWallet.Description,
+            DBWallet wallet = new DBWallet(_currentWallet.Wallet.Guid, _currentWallet.Name, _currentWallet.Wallet.CurrentBalance, _currentWallet.Description,
                     _currentWallet.Currency);
             await service.DeleteWallet(wallet);
 
@@ -103,7 +104,6 @@ namespace Budgets.GUI.WPF.Wallets
             }
 
             AuthenticationService.CurrentUser.Wallets.RemoveAll(x => x.Guid == wallet.Guid);
-           // await service.SaveUpdateWallet(AuthenticationService.CurrentUser,wallet);
             Update();
         }
 

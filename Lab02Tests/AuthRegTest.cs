@@ -26,15 +26,14 @@ namespace Lab02Tests
             registrationUser.LastName = "test";
             registrationUser.Login = "testLogin";
             registrationUser.Password = "testPassword";
-            Assert.True(service.RegisterUser(registrationUser));
+            Assert.True(service.RegisterUser(registrationUser).Result);
 
             AuthenticationUser aUser = new();
             aUser.Login = "testLogin";
             aUser.Password = "testPassword";
-            var createdUser = service.Authenticate(aUser);
-            Assert.Equal( "test", createdUser.LastName);
-            Assert.Equal("test", createdUser.FirstName);
-            Assert.Equal("testLogin", createdUser.Login);
+            var createdUser = service.Authenticate(aUser).Result;
+            Assert.Equal( "test", createdUser.Surname);
+            Assert.Equal("test", createdUser.Name);
             Assert.Equal("test@gmail.com", createdUser.Email);
         }
 

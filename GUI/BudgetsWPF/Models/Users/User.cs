@@ -24,7 +24,7 @@ namespace Lab01.Entities
             Wallets = new List<Wallet>();
             SharedWallets = new List<Wallet>();
             //add categories to Category???
-            if (!categories.Contains(Category.DefaultCategory)) categories.Add(Category.DefaultCategory);
+            if (categories.Count==0) categories.Add(Category.DefaultCategory);
             Categories = categories;
         }
 

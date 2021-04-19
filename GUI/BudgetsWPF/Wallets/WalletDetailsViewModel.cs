@@ -15,7 +15,8 @@ namespace Budgets.GUI.WPF.Wallets
         public string Incomes
         {
             get
-            {
+            {if (_wallet.GetLastMonthIncome() == 0)
+                    return 0.ToString();
                 return _wallet.GetLastMonthIncome().ToString("#.##");
             }
         }
@@ -23,6 +24,8 @@ namespace Budgets.GUI.WPF.Wallets
         {
             get
             {
+                if (_wallet.GetLastMonthExpenses() == 0)
+                    return 0.ToString();
                 return _wallet.GetLastMonthExpenses().ToString("#.##");
             }
         }

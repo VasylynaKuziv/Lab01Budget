@@ -141,7 +141,7 @@ namespace Lab01.Entities
         public bool validateDate(DateTime dt)
         {
             DateTime lastMonth = DateTime.Today.AddMonths(-1);
-            return (dt > DateTime.Today.AddMonths(-1) && dt <= DateTime.Today);
+            return (dt > DateTime.Today.AddMonths(-1) );
         }
 
         public decimal GetLastMonthIncome()
