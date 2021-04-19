@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lan01.Tests", "Lan01.Tests\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetsWPF", "GUI\BudgetsWPF\BudgetsWPF.csproj", "{E5B398E2-678B-4719-A1A0-278EAD00F0C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab02Tests", "Lab02Tests\Lab02Tests.csproj", "{4A7C966B-21D7-40C9-BD87-9C45FB0BE500}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lab02_03Tests", "Lab02Tests\Lab02_03Tests.csproj", "{4A7C966B-21D7-40C9-BD87-9C45FB0BE500}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

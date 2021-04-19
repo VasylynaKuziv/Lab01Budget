@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 
 namespace Budgets.GUI.WPF.Categories
 {
-    class CategoryViewModel : INotifyPropertyChanged, INavigatable<WalletsNavigatableTypes>
+   public class CategoryViewModel : INotifyPropertyChanged, INavigatable<WalletsNavigatableTypes>
     {
         private Category _category = new Category();
         private Category _currentCategory;
@@ -82,7 +82,7 @@ namespace Budgets.GUI.WPF.Categories
                 AddCategoryCommand.RaiseCanExecuteChanged();
             }
         }*/
-        private async void CreateCategory()
+        public async void CreateCategory()
         {
             var service = new UserService();
             try
@@ -143,6 +143,21 @@ namespace Budgets.GUI.WPF.Categories
         public DelegateCommand AddCategoryCommand { get; }
 
         public DelegateCommand RemoveCategoryCommand { get; }
+        //for test
+        public CategoryViewModel()
+        {
+
+            Categories = new ObservableCollection<Category>();
+
+            foreach (var category in AuthenticationService.CurrentUser.Categories)
+            {
+                Categories.Add(category);
+            }
+
+            GoBack = new DelegateCommand(_returnBack);
+            AddCategoryCommand = new DelegateCommand(CreateCategory, correctInput);
+            RemoveCategoryCommand = new DelegateCommand(RemoveCategory, IsValidRemove);
+        }
         public CategoryViewModel(Action goBack)
         {
 
@@ -158,6 +173,7 @@ namespace Budgets.GUI.WPF.Categories
             AddCategoryCommand = new DelegateCommand(CreateCategory, correctInput);
             RemoveCategoryCommand = new DelegateCommand(RemoveCategory, IsValidRemove);
         }
+        
 
         private bool IsValidRemove()
         {
