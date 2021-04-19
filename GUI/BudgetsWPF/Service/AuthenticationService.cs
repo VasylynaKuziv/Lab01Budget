@@ -1,4 +1,5 @@
-﻿using Budgets.Models.Users;
+﻿using Budgets.GUI.WPF.Service;
+using Budgets.Models.Users;
 using Budgets.Services;
 using DataStorage;
 using Lab01.Entities;
@@ -33,8 +34,9 @@ namespace Budgets.GUI.WPF.Authentication
             }
 
             dbUser.Categories ??= new List<Category>();
-
+            var service = new WalletService();
             CurrentUser = new User(dbUser.Guid, dbUser.FirstName, dbUser.LastName, dbUser.Email, dbUser.Categories);
+            CurrentUser = await service.LoadUserWallets(CurrentUser);
             return CurrentUser;
         }
 

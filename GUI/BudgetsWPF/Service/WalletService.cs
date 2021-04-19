@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Lab01.Entities;
 using Lab01Budget.Entities.Storage;
-
+using Budgets.Models.Users;
 
 namespace Budgets.GUI.WPF.Service
 {
@@ -34,8 +34,8 @@ namespace Budgets.GUI.WPF.Service
         public async Task<bool> DeleteWallet(DBWallet wallet)
         {
             //var transactService = new TransactionService();
-            await _storage.RemoveObj(wallet);
-            return true;
+             await _storage.RemoveObj(wallet);
+              return true;
         }
     }
 }

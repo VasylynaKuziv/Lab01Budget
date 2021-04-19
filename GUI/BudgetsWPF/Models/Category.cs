@@ -3,7 +3,7 @@ namespace Lab01.Entities
 {
     public class Category
     {
-        //public Guid Guid { get; }
+        public Guid Guid { get; }
         public string Name { get; set; }
         public string Description { get; set; }
 
@@ -11,7 +11,7 @@ namespace Lab01.Entities
 
         public Category(string name, string description)
         {
-            //Guid = Guid.NewGuid();
+            Guid = Guid.NewGuid();
             Name = name;
             Description = description;
         }

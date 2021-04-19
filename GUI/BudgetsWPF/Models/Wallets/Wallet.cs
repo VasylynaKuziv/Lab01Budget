@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Budgets.GUI.WPF.Models.Wallets;
+//using Budgets.GUI.WPF.Models.Wallets;
 using DataStorage;
 
 namespace Lab01.Entities

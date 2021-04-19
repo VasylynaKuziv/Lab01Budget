@@ -60,7 +60,6 @@ namespace Budgets.GUI.WPF.Wallets
         public WalletsViewModel(Action gotoWalletCreation, Action gotoTransactionCreation, Action categoryCreation, Action update)
         {
             Wallets = new ObservableCollection<WalletDetailsViewModel>();
-
             foreach (var wallet in AuthenticationService.CurrentUser.Wallets)
             {
                 Wallets.Add(new WalletDetailsViewModel(wallet));
@@ -77,7 +76,18 @@ namespace Budgets.GUI.WPF.Wallets
             RemoveTransactionCommand = new DelegateCommand(RemoveTransaction, IsSelectedTransaction);
         }
 
-
+        public async void LoadWallets()
+        {
+            var service = new WalletService();
+            try
+            {
+                await service.LoadUserWallets(AuthenticationService.CurrentUser);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
         public async void RemoveWallet()
         {
 
@@ -93,6 +103,7 @@ namespace Budgets.GUI.WPF.Wallets
             }
 
             AuthenticationService.CurrentUser.Wallets.RemoveAll(x => x.Guid == wallet.Guid);
+           // await service.SaveUpdateWallet(AuthenticationService.CurrentUser,wallet);
             Update();
         }
 
