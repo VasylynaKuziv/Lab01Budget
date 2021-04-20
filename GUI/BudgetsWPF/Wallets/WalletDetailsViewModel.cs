@@ -34,6 +34,7 @@ namespace Budgets.GUI.WPF.Wallets
         {
             get
             {
+                _wallet.CurrentBalance = _wallet.GetCurrentBalance();
                 return _wallet.CurrentBalance.ToString("#.##");
             }
 

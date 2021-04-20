@@ -11,6 +11,7 @@ namespace Lab01.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public decimal InitBalance { get; set; }
+        
         public decimal CurrentBalance { get; set; }
         public List<Category> Categories { get; }
 
@@ -18,8 +19,9 @@ namespace Lab01.Entities
 
         private List<Category> AllCategories;
 
-        private string currency;
+        
 
+        private string currency;
         public string Currency
         {
             get => currency;
@@ -178,6 +180,23 @@ namespace Lab01.Entities
             }
             return expenses;
         }
+
+
+        public decimal GetCurrentBalance()
+        {
+            decimal balance = InitBalance;
+
+            int rateWallet = allCurrency[this.Currency];
+            foreach (Transaction tr in Transactions)
+            {
+                int rate = allCurrency[tr.Currency];
+                decimal sum = tr.Sum;
+
+                balance += sum * rate / rateWallet;
+            }
+            return balance;
+        }
+
 
         /*
         public override string ToString()
