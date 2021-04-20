@@ -136,6 +136,7 @@ namespace Budgets.GUI.WPF.Wallets
                 OnPropertyChanged(nameof(CurrentWallet));
                 OnPropertyChanged(nameof(CurrentTransaction));
                 RemoveTransactionCommand.RaiseCanExecuteChanged();
+
             }
         }
 

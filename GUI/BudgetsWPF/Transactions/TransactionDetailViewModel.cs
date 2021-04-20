@@ -177,7 +177,7 @@ namespace Budgets.GUI.WPF.Transactions
             var service = new TransactionService();
             try
             {
-                WalletService.CurrentWallet.DeleteTransaction( _transaction);
+                WalletService.CurrentWallet.DeleteTransaction(_transaction);
                 await service.SaveUpdateTransaction(WalletService.CurrentWallet, _transaction);
                 WalletService.CurrentWallet.AddTransaction( _transaction);
                 _update.Invoke();

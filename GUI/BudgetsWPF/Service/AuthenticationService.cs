@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
 namespace Budgets.GUI.WPF.Authentication
 {
@@ -52,6 +53,11 @@ namespace Budgets.GUI.WPF.Authentication
                 String.IsNullOrWhiteSpace(regUser.Password) ||
                 String.IsNullOrWhiteSpace(regUser.Email))
                 throw new ArgumentException("Something is Empty. Fill everething in, please/");
+            if ((regUser.Login.Length<=6) ||
+                (regUser.Password.Length<=6))
+                throw new ArgumentException("Password and Login must have length more than 6 characters.");
+            if (!(new EmailAddressAttribute().IsValid(regUser.Email)))
+                throw new ArgumentException("Email is Invalid!");
             dbUser = new DBUser(regUser.FirstName, regUser.LastName, regUser.Email,
                 regUser.Login, PasswordEncoder.Encrypt(regUser.Password));
             await _storage.AddOrUpdateAsync(dbUser);

@@ -34,6 +34,9 @@ namespace Budgets.GUI.WPF.Wallets
         {
             get
             {
+
+                RaisePropertyChanged(nameof(DisplayName));
+                UpdateWalletCommand.RaiseCanExecuteChanged();
                 _wallet.CurrentBalance = _wallet.GetCurrentBalance();
                 return _wallet.CurrentBalance.ToString("#.##");
             }
@@ -85,7 +88,7 @@ namespace Budgets.GUI.WPF.Wallets
         {
             get
             {
-                return $"{_wallet.Name} ({_wallet.CurrentBalance:#.##} )";
+                return $"{_wallet.Name}";
             }
         }
 
