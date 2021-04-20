@@ -106,7 +106,8 @@ namespace Budgets.GUI.WPF.Transactions
 
         private bool IsValid()
         {
-            return !String.IsNullOrWhiteSpace(Description) && CurrentCategory != null && !String.IsNullOrWhiteSpace(Currency);
+            return !String.IsNullOrWhiteSpace(Description) && CurrentCategory != null && !String.IsNullOrWhiteSpace(Currency) 
+                && (WalletService.CurrentWallet.CurrentBalance + Sum)>=0;
         }
 
         private async void CreateTransaction()

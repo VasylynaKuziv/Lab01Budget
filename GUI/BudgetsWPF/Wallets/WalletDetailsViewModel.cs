@@ -30,6 +30,15 @@ namespace Budgets.GUI.WPF.Wallets
             }
         }
 
+        public string CurrentBalance
+        {
+            get
+            {
+                return _wallet.CurrentBalance.ToString("#.##");
+            }
+
+        }
+
         public string Name
         {
             get
@@ -69,15 +78,7 @@ namespace Budgets.GUI.WPF.Wallets
             }
         }
 
-        
-        public string CurrentBalance
-        {
-            get
-            {
-                return _wallet.CurrentBalance.ToString("#.##");
-            }
-
-        }
+       
         
         public string DisplayName
         {

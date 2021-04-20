@@ -147,17 +147,15 @@ namespace Lab01.Entities
         public decimal GetLastMonthIncome()
         {
             decimal income = 0;
-            //if (Transactions == null)
-            //{
-            //    return 0;
-            //}
+
+            int rateWallet = allCurrency[this.Currency];
             foreach (Transaction tr in Transactions)
             {
                 int rate = allCurrency[tr.Currency];
                 decimal sum = tr.Sum;
                 if (validateDate(tr.Date) && sum > 0)
                 {
-                    income += rate * sum;
+                    income += sum * rate / rateWallet;
                 }
             }
             return income;
@@ -167,17 +165,15 @@ namespace Lab01.Entities
         public decimal GetLastMonthExpenses()
         {
             decimal expenses = 0;
-            //if (Transactions == null)
-            //{
-            //    return 0;
-            //}
+
+            int rateWallet = allCurrency[this.Currency];
             foreach (Transaction tr in Transactions)
             {
                 int rate = allCurrency[tr.Currency];
                 decimal sum = tr.Sum;
                 if (validateDate(tr.Date) && sum < 0)
                 {
-                    expenses += rate * sum;
+                    expenses += sum * rate / rateWallet;
                 }
             }
             return expenses;
